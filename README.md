@@ -1,2 +1,9 @@
 # Curve-ball
 変化球シミレーターです。
+使っているライブラリ
+標準
+math
+tkinter
+numpy
+外部
+plotly
