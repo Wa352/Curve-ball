@@ -62,6 +62,13 @@ point_label = t.Label(inputer, text="高さ[m]")
 point_label.place(x=10, y=190, width=150, height=20)
 point_entry = t.Entry(inputer)
 point_entry.place(x=150, y=190, width=100, height=20)
+
+frame_label = t.Label(inputer, text="ロード数毎秒")
+frame_label.place(x=10, y=210, width=150, height=20)
+frame_entry = t.Entry(inputer)
+frame_entry.insert(0, "10")
+frame_entry.place(x=150, y=210, width=100, height=20)
+
 #ボタンを押したとき、実行する関数
 def start():
     try:
@@ -76,6 +83,8 @@ def start():
         mass = float(mass_entry.get())
         distance = float(distance_entry.get())
         point = float(point_entry.get())
+        frame =  float(frame_entry.get())
+        dt = 1 / frame
         #角速度やマグヌス効果による各軸おおもとの加速度(a_beta)の計算
         theata_speed = (rpm * 2 * math.pi) / 60
         a = math.pi * (radius ** 2)
@@ -87,7 +96,6 @@ def start():
         ay = a_beta * -1 * math.sin(math.radians(theta_y))
         az = a_beta * -1 * math.sin(math.radians(theta_z))
         #時間データのリスト化
-        dt = 0.1
         t_max = distance / speed
         times = np.arange(0, t_max, dt)
         ball_size=radius*2
